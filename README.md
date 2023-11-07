@@ -3,6 +3,7 @@
 <h3>Exanima ImageFont Generation Tool</h3>
 <h4>Instructions:</h4>
 <ol>
+  <li>Download the repository.</li>
   <li>Extract to somewhere.</li>
   <li>Run the exanitype.py script.</li>
   <li>Type something in all caps, and spaces.</li>
