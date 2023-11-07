@@ -12,7 +12,8 @@
 <h4>Included Fonts:</h4>
 <ul>
   <li>Exanima Title Font.</li>
-  <li>(Planned) Exanima text font.</li>
+  <li>Exanima text font.</li>
+  <li>(Planned) Smaller Exanima text font.</li>
 </ul>
 <h4>Requirements:</h4>
 <ul>
@@ -21,7 +22,5 @@
 </ul>
 <hr>
 <p align="center">
-This is very rudimentary, but works.<br>
-I plan to use the image texture whole instead of splitting it by character.<br>
-I just happened to have a similar script I could repurpose for this.
+Special thanks to https://www.ascii-code.com/ and https://en.wikipedia.org/wiki/List_of_Unicode_characters
 </p>
