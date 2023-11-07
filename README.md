@@ -5,8 +5,8 @@
 <ol>
   <li>Download the repository.</li>
   <li>Extract to somewhere.</li>
-  <li>Run the exanitype.py script.</li>
-  <li>Type something in all caps, and spaces.</li>
+  <li>Run the appropriate script.</li>
+  <li>Type something.</li>
   <li>Image is output in the same folder as the script.</li>
 </ol>
 <h4>Included Fonts:</h4>
