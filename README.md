@@ -15,7 +15,7 @@
   <li>Exanima text font.</li>
   <li>(Planned) Smaller Exanima text font.</li>
   <li>(Maybe) Pre-edited logo font.</li>
-  <small><small><small><small>Note: The EXANIMA logo is Palotino Linotype.</small></small></small></small>
+  <small><small><small><small>Note: The Exanima logo is Palotino Linotype.</small></small></small></small>
 </ul>
 <h4>Instructions:</h4>
 <ol>
