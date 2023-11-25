@@ -1,20 +1,30 @@
-<p align="center"><img src="https://github.com/YewYew/Exanitype/blob/main/exanitype.png"/></p>
+<p align="center"><img src="https://github.com/YewYew/Exanitype/blob/main/samples/exanitype_title.png"/></p>
+<p align="center"><img src="https://github.com/YewYew/Exanitype/blob/main/samples/exanitype_subtitle.png"/></p>
 <hr>
 <h3>Exanima ImageFont Generation Tool</h3>
+<h4>Features:</h4>
+<ul>
+  <li>Simple text-based UI.</li>
+  <li>Some fonts to pick from.</li>
+  <li>Multi-line typing support.</li>
+  <li>And uh.... you can add your own I guess?</li>
+</ul>
+<h4>Included Fonts:</h4>
+<ul>
+  <li>Exanima title font.</li>
+  <li>Exanima text font.</li>
+  <li>(Planned) Smaller Exanima text font.</li>
+  <li>(Maybe) Pre-edited logo font.</li>
+  <small><small><small><small>Note: The EXANIMA logo is Palotino Linotype.</small></small></small></small>
+</ul>
 <h4>Instructions:</h4>
 <ol>
   <li>Download the repository.</li>
   <li>Extract to somewhere.</li>
   <li>Run the appropriate script.</li>
-  <li>Type something.</li>
+  <li>Follow instructions in the script.</li>
   <li>Image is output in the same folder as the script.</li>
 </ol>
-<h4>Included Fonts:</h4>
-<ul>
-  <li>Exanima Title Font.</li>
-  <li>Exanima text font.</li>
-  <li>(Planned) Smaller Exanima text font.</li>
-</ul>
 <h4>Requirements:</h4>
 <ul>
   <li><a href="https://www.python.org/">Python</a> (Some version, just get the newest.)</li>
@@ -22,5 +32,8 @@
 </ul>
 <hr>
 <p align="center">
-Special thanks to https://www.ascii-code.com/ and https://en.wikipedia.org/wiki/List_of_Unicode_characters
+Special thanks to <a href="https://www.baremettle.com/">Bare Mettle Entertainment</a> for making <a href="https://store.steampowered.com/app/362490/Exanima/">Exanima</a>,<br>
+to <a href=https://www.ascii-code.com/>ascii-code.com</a> and <a href=https://en.wikipedia.org/wiki/List_of_Unicode_characters>Wikipedia's unicode character list</a>,<br>
+the <a href="https://discord.gg/urAMNZBVMz">Exanima discord</a> and <a href="https://discord.gg/DVwrg2Vpqc">modding discord</a>.<br>
 </p>
+
