@@ -11,8 +11,9 @@ while(cont == False):
 		print("Input number for option: ")
 		print("0.) Quit")
 		print("1.) Title Font")
-		print("2.) Large Text")
-		#print("3.) Small Text")
+		print("2.) Small Text")
+		print("3.) Medium Text")
+		#print("4.) Large Text")
 		answer = input("Selection: ")
 	except KeyboardInterrupt:
 		print("Quitting...")
@@ -20,13 +21,13 @@ while(cont == False):
 	if(answer == "0"):
 		print("Quitting...")
 		quit()
-	elif(answer != "1" and answer != "2"):
+	elif(answer != "1" and answer != "2" and answer != "3"):
 		os.system('cls' if os.name == 'nt' else 'clear')
 		print("Invalid Input!")
 	else:
 		cont = True
 
-character_layout, image_path, crop_x, crop_y, space_size, vertical_buffer = None, None, None, None, None, None
+character_layout, image_path, crop_x, crop_y, space_size, force_crop_top, force_crop_width = None, None, None, None, None, None, None
 
 #While I considered making config files of sorts for fonts, hardcoding is fine for my purposes.
 match answer:
@@ -34,8 +35,8 @@ match answer:
 		print("Quitting...")
 		quit()
 	case "1":
-		image_path = './fonts/title_font.png'
-		characterLayout = [
+		image_path = './fonts/title_font.png' 	#This is the image path, obviously.
+		characterLayout = [						#Match this to the image. Blank spots can just be empty "" or " ".
 			["A", "B", "C", "D"],
 			["E", "F", "G", "H"],
 			["I", "J", "K", "L"],
@@ -44,21 +45,49 @@ match answer:
 			["U", "V", "W", "X"],
 			["Y", "Z", " ", "" ]
 		]
-		crop_x = 128
-		crop_y = 128
-		space_size = 32
-		letter_spacing = 0
-		vertical_buffer = 2
-		line_spacing = 0
+		crop_x = 128							#The width of each character's section. Image-fonts are grids after all.
+		crop_y = 128							#The height of what's described on the line above.
+		space_size = 32							#This is how many pixels to jump if a space is input.
+		letter_spacing = 0						#Add pixels to the end of characters.
+		line_spacing = 0						#When typing multiline, how many pixels of space betwix them.
+		force_crop_width = 0					#Shifts the right edge of a character's space. (small_font has trailing pixel overlap(s), and thus this). 
+		force_crop_top = 2						#Same as above, but the top edge of the space. (J in title_font dips into the character below, so this.).
 	case "2":
-		image_path = './fonts/big_text.png'
+		image_path = './fonts/small_font.png'
 		characterLayout = [
 			["ð", "ñ", "ò", "ó", "õ", "õ", "ö", "÷", "ø", "ù", "ú", "û", "ü", "ý", "þ", "ÿ" ],
 			["à", "á", "â", "ã", "ä", "å", "æ", "ç", "è", "é", "ê", "ë", "ì", "í", "î", "ï" ],
 			["Ð", "Ñ", "Ò", "Ó", "Ô", "Õ", "Ö", "×", "Ø", "Ù", "Ú", "Û", "Ü", "Ý", "Þ", "ß" ],
 			["À", "Á", "Â", "Ã", "Ä", "Å", "Æ", "Ç", "È", "É", "Ê", "Ë", "Ì", "Í", "Î", "Ï" ],
 			["°", "±", "²", "³", "´", "µ", "¶", "·", "¸", "¹", "º", "»", "¼", "½", "¾", "¿" ],
-			[" ", "¡", "¢", "£", "¤", "¥", "¦", "§", "̈",  "©", "ᵃ", "«", "¬", "–", "®", "̄"  ],
+			[" ", "¡", "¢", "£", "¤", "¥", "¦", "§", "̈", "©", "ᵃ", "«", "¬", "–", "®", "̄" ],
+			["|", "`", "´", "“", "”", "•", "–", "—", "‾", "™", "š", ">", "œ", "□", " ", "Ÿ" ],
+			["€", "□", "‚", "ƒ", "„", "…", "†", "‡", "^", "‰", "Š", "<", "Œ", "□", "Ž", "□" ],
+			["p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "{", "|", "}", "~", "□" ],
+			["`", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o" ],
+			["P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "[", "\\", "]", "^", "_"],
+			["@", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O" ],
+			["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", ":", ";", "<", "=", ">", "?" ],
+			[" ", "!", "\"", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/"],
+			["╋", "⯇", "⬍",  "‼", "¶", "┻", "┳", "┫", "⬆", "┣", "⭢", "⭠", "" , "" , "" , ""	],
+			["" , "" , "┓",  "┗", "┛", "┃", "━", "•", "◘", "" , "" , "♂", "▭", "" , "♫", "𝖃"	] #This last one is a educated guess.
+		]
+		crop_x = 16
+		crop_y = 32
+		space_size = 3
+		letter_spacing = 0
+		line_spacing = 2
+		force_crop_width = -2
+		force_crop_top = 0
+	case "3":
+		image_path = './fonts/medium_font.png'
+		characterLayout = [
+			["ð", "ñ", "ò", "ó", "õ", "õ", "ö", "÷", "ø", "ù", "ú", "û", "ü", "ý", "þ", "ÿ" ],
+			["à", "á", "â", "ã", "ä", "å", "æ", "ç", "è", "é", "ê", "ë", "ì", "í", "î", "ï" ],
+			["Ð", "Ñ", "Ò", "Ó", "Ô", "Õ", "Ö", "×", "Ø", "Ù", "Ú", "Û", "Ü", "Ý", "Þ", "ß" ],
+			["À", "Á", "Â", "Ã", "Ä", "Å", "Æ", "Ç", "È", "É", "Ê", "Ë", "Ì", "Í", "Î", "Ï" ],
+			["°", "±", "²", "³", "´", "µ", "¶", "·", "¸", "¹", "º", "»", "¼", "½", "¾", "¿" ],
+			[" ", "¡", "¢", "£", "¤", "¥", "¦", "§", "̈",  "©", "ᵃ", "«", "¬", "–", "®", "̄"],
 			["|", "`", "´", "“", "”", "•", "–", "—", "‾", "™", "š", ">", "œ", "□", " ", "Ÿ" ],
 			["€", "□", "‚", "ƒ", "„", "…", "†", "‡", "^", "‰", "Š", "<", "Œ", "□", "Ž", "□" ],
 			["p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "{", "|", "}", "~", "□" ],
@@ -73,8 +102,9 @@ match answer:
 		crop_y = 32
 		space_size = 4
 		letter_spacing = 0
-		vertical_buffer = 0
 		line_spacing = 2
+		force_crop_width = 0
+		force_crop_top = 0
 
 image = Image.open(image_path).convert('RGBA')
 
@@ -106,7 +136,7 @@ while True:
 			for y, row in enumerate(characterLayout):
 				if char in row:
 					x = row.index(char)
-					segment = image.crop((x * crop_x, y * crop_y, x * crop_x + crop_x, y * crop_y + crop_y))
+					segment = image.crop((x * crop_x, y * crop_y + force_crop_top, x * crop_x + crop_x + force_crop_width, y * crop_y + crop_y))
 
 					bbox = segment.getbbox()
 					if bbox is not None:
@@ -122,12 +152,6 @@ while True:
 			if not found:
 				print(f"Character '{char}' not found in characterLayout.")
 				
-	#vertical_buffer exists just for title_font, as J overlaps below.
-	if vertical_buffer != 0:
-		left, upper, right, lower = result_image.getbbox()
-		upper+=vertical_buffer
-		result_image = result_image.crop((left, upper, right, lower))
-		
 	left, upper, right, lower = result_image.getbbox()
 	result_image = result_image.crop((left, upper, right, lower))
 	
