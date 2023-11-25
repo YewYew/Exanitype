@@ -12,8 +12,9 @@
 <h4>Included Fonts:</h4>
 <ul>
   <li>Exanima title font.</li>
-  <li>Exanima text font.</li>
-  <li>(Planned) Smaller Exanima text font.</li>
+  <li>Exanima medium text font.</li>
+  <li>Exanima small text font.</li>
+  <li>(Planned) Exanima large text font.</li>
   <li>(Maybe) Pre-edited logo font.</li>
   <small><small><small><small>Note: The Exanima logo is Palotino Linotype.</small></small></small></small>
 </ul>
