@@ -107,8 +107,8 @@ def answerReply(answer):
 			]
 			atd.crop_x = 64
 			atd.crop_y = 64
-			atd.space_size = 4
-			atd.letter_spacing = 0
+			atd.space_size = 16
+			atd.letter_spacing = 1
 			atd.line_spacing = 2
 			atd.force_crop_width = 0
 			atd.force_crop_top = 0

@@ -7,22 +7,25 @@
   <li>Simple text-based UI.</li>
   <li>Some fonts to pick from.</li>
   <li>Multi-line typing support.</li>
-  <li>And uh.... you can add your own I guess?</li>
+  <li>You can add your own, with some effort.</li>
+  <li>Turn system fonts (ttf/otf) into Exanima ImageFonts</li>
+  <sub><sup>Note: You will require other tools to inject it into the game.</sup></sub>
 </ul>
 <h4>Included Fonts:</h4>
 <ul>
   <li>Exanima title font.</li>
-  <li>Exanima medium text font.</li>
+  <li>Exanima fontbase24r.</li>
   <li>Exanima small text font.</li>
+  <li>Exanima medium text font.</li>
   <li>(Planned) Exanima large text font.</li>
   <li>(Maybe) Pre-edited logo font.</li>
-  <small><small><small><small>Note: The Exanima logo is Palotino Linotype.</small></small></small></small>
+  <sub><sup>Note: The Exanima logo is Palotino Linotype.</sup></sub>
 </ul>
 <h4>Instructions:</h4>
 <ol>
   <li>Download the repository.</li>
   <li>Extract to somewhere.</li>
-  <li>Run the appropriate script.</li>
+  <li>Run script.</li>
   <li>Follow instructions in the script.</li>
   <li>Image is output in the same folder as the script.</li>
 </ol>
