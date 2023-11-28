@@ -14,6 +14,7 @@ class textData:		#Stores data about an imageFont.
 		self.space_size			= None
 		self.force_crop_top		= None
 		self.force_crop_width	= None
+		self.flip_vertical		= None
 
 def mainMenu():
 	global programMode
@@ -28,9 +29,10 @@ def mainMenu():
 			print("Input number for option: ")
 			print("0.) "+zeroOption)
 			print("1.) Title Font" )
-			print("2.) Small Text" )
-			print("3.) Medium Text")
-			#print("4.) Large Text")
+			print("2.) fontbase24r (May take a hot minute on slow PCs)")
+			print("3.) Small Text" )
+			print("4.) Medium Text")
+			#print("5.) Large Text")
 			if programMode == 0:
 				print("5.) Font to ImageFont")
 			answer = input("Selection: ")
@@ -47,7 +49,7 @@ def mainMenu():
 		elif(answer == "5" and programMode == 0):
 			os.system('cls' if os.name == 'nt' else 'clear')
 			programMode = 1
-		elif(answer == "1" or answer == "2" or answer == "3"):
+		elif(answer == "1" or answer == "2" or answer == "3" or answer == "4"):	#This is terrible.
 			cont = True	
 			if programMode == 0:
 				textToFont(answerReply(answer))
@@ -66,8 +68,8 @@ def answerReply(answer):
 			print("Quitting...")
 			quit()
 		case "1":
-			atd.image_path = './fonts/title_font.png' 	#This is the image path, obviously.
-			atd.character_layout = [						#Match this to the image. Blank spots can just be empty "" or " ".
+			atd.image_path = './fonts/titlefont.png' 	#This is the image path, obviously.
+			atd.character_layout = [					#Match this to the image. Blank spots can just be empty "" or " ".
 				["A", "B", "C", "D"],
 				["E", "F", "G", "H"],
 				["I", "J", "K", "L"],
@@ -83,15 +85,44 @@ def answerReply(answer):
 			atd.line_spacing = 0						#When typing multiline, how many pixels of space betwix them.
 			atd.force_crop_width = 0					#Shifts the right edge of a character's space. (small_font has trailing pixel overlap(s), and thus this). 
 			atd.force_crop_top = 2						#Same as above, but the top edge of the space. (J in title_font dips into the character below, so this.).
+			atd.flip_vertical = True					#Flips the image vertically before doing anything else. Exanima files are naturally upside down.
+			atd.snick = False							#Because fontbase24r is an encoded rfi, it came out with black background. This fixes it, perfectly. (Basically if you have a grayscale font with a black background, use this.)
 		case "2":
-			atd.image_path = './fonts/small_font.png'
+			atd.image_path = './fonts/fontbase24r.png'
+			atd.character_layout = [
+				["ð", "ñ", "ò", "ó", "õ", "õ", "ö", "÷", "ø", "ù", "ú", "û", "ü", "ý", "þ", "ÿ" ],
+				["à", "á", "â", "ã", "ä", "å", "æ", "ç", "è", "é", "ê", "ë", "ì", "í", "î", "ï" ],
+				["Ð", "Ñ", "Ò", "Ó", "Ô", "Õ", "Ö", "×", "Ø", "Ù", "Ú", "Û", "Ü", "Ý", "Þ", "ß" ],
+				["À", "Á", "Â", "Ã", "Ä", "Å", "Æ", "Ç", "È", "É", "Ê", "Ë", "Ì", "Í", "Î", "Ï" ],
+				["°", "±", "²", "³", "´", "µ", "¶", "·", "̧",  "¹", "º", "»", "¼", "½", "¾", "¿" ], #This has a Combining Cedilla, not a blank space.
+				["ﬂ", "¡", "¢", "£", "¤", "¥", "¦", "§", "̈",  "©", "ᵃ", "«", "¬", "–", "®", "̄"	], #Two dots diacritic, Combining Macron
+				["|", "`", "´", "“", "”", "•", "–", "—", "‾", "™", "š", ">", "œ", " ", "□", "Ÿ" ],
+				["□", " ", "‚", "ƒ", "„", "…", "†", "‡", "^", "‰", "Š", "<", "Œ", " ", "□", " " ],
+				["p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "{", "|", "}", "~", "Ž" ],
+				["`", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o" ],
+				["P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "[", "\\", "]", "^", "_"],
+				["@", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O" ],
+				["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", ":", ";", "<", "=", ">", "?" ],
+				[" ", "!", "\"", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/"]
+			]
+			atd.crop_x = 64
+			atd.crop_y = 64
+			atd.space_size = 4
+			atd.letter_spacing = 0
+			atd.line_spacing = 2
+			atd.force_crop_width = 0
+			atd.force_crop_top = 0
+			atd.flip_vertical = True
+			atd.snick = True
+		case "3":
+			atd.image_path = './fonts/smallfont.png'
 			atd.character_layout = [
 				["ð", "ñ", "ò", "ó", "õ", "õ", "ö", "÷", "ø", "ù", "ú", "û", "ü", "ý", "þ", "ÿ" ],
 				["à", "á", "â", "ã", "ä", "å", "æ", "ç", "è", "é", "ê", "ë", "ì", "í", "î", "ï" ],
 				["Ð", "Ñ", "Ò", "Ó", "Ô", "Õ", "Ö", "×", "Ø", "Ù", "Ú", "Û", "Ü", "Ý", "Þ", "ß" ],
 				["À", "Á", "Â", "Ã", "Ä", "Å", "Æ", "Ç", "È", "É", "Ê", "Ë", "Ì", "Í", "Î", "Ï" ],
 				["°", "±", "²", "³", "´", "µ", "¶", "·", "¸", "¹", "º", "»", "¼", "½", "¾", "¿" ],
-				[" ", "¡", "¢", "£", "¤", "¥", "¦", "§", "̈", "©", "ᵃ", "«", "¬", "–", "®", "̄" 	],
+				[" ", "¡", "¢", "£", "¤", "¥", "¦", "§", "̈", "©", "ᵃ", "«", "¬", "–", "®", "̄" 	], #Two dots diacritic, Combining Macron
 				["|", "`", "´", "“", "”", "•", "–", "—", "‾", "™", "š", ">", "œ", "□", " ", "Ÿ" ],
 				["€", "□", "‚", "ƒ", "„", "…", "†", "‡", "^", "‰", "Š", "<", "Œ", "□", "Ž", "□" ],
 				["p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "{", "|", "}", "~", "□" ],
@@ -110,15 +141,17 @@ def answerReply(answer):
 			atd.line_spacing = 2
 			atd.force_crop_width = -2
 			atd.force_crop_top = 0
-		case "3":
-			atd.image_path = './fonts/medium_font.png'
+			atd.flip_vertical = True
+			atd.snick = False
+		case "4":
+			atd.image_path = './fonts/mediumfont.png'
 			atd.character_layout = [
 				["ð", "ñ", "ò", "ó", "õ", "õ", "ö", "÷", "ø", "ù", "ú", "û", "ü", "ý", "þ", "ÿ" ],
 				["à", "á", "â", "ã", "ä", "å", "æ", "ç", "è", "é", "ê", "ë", "ì", "í", "î", "ï" ],
 				["Ð", "Ñ", "Ò", "Ó", "Ô", "Õ", "Ö", "×", "Ø", "Ù", "Ú", "Û", "Ü", "Ý", "Þ", "ß" ],
 				["À", "Á", "Â", "Ã", "Ä", "Å", "Æ", "Ç", "È", "É", "Ê", "Ë", "Ì", "Í", "Î", "Ï" ],
 				["°", "±", "²", "³", "´", "µ", "¶", "·", "¸", "¹", "º", "»", "¼", "½", "¾", "¿" ],
-				[" ", "¡", "¢", "£", "¤", "¥", "¦", "§", "̈",  "©", "ᵃ", "«", "¬", "–", "®", "̄"	],
+				[" ", "¡", "¢", "£", "¤", "¥", "¦", "§", "̈",  "©", "ᵃ", "«", "¬", "–", "®", "̄"	], #Two dots diacritic, Combining Macron
 				["|", "`", "´", "“", "”", "•", "–", "—", "‾", "™", "š", ">", "œ", "□", " ", "Ÿ" ],
 				["€", "□", "‚", "ƒ", "„", "…", "†", "‡", "^", "‰", "Š", "<", "Œ", "□", "Ž", "□" ],
 				["p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "{", "|", "}", "~", "□" ],
@@ -136,6 +169,8 @@ def answerReply(answer):
 			atd.line_spacing = 2
 			atd.force_crop_width = 0
 			atd.force_crop_top = 0
+			atd.flip_vertical = True
+			atd.snick = False
 		case _:
 			print("Error: Invalid Answer! (" + answer + ")")
 			print("Returning to menu...")
@@ -146,7 +181,10 @@ def textToFont(textData):
 	atd = textData #Active text data.
 
 	image = Image.open(atd.image_path).convert('RGBA')
-
+	if atd.snick:
+		image = snick(image)
+	if atd.flip_vertical:
+		image = image.transpose(Image.Transpose.FLIP_TOP_BOTTOM)
 	image_list = []
 
 	print("################################")
@@ -227,6 +265,12 @@ def textToFont(textData):
 def trySaveImage(result_image):
 	try:
 		print("Input file name or blank to cancel")
+		should_flip = input("Flip Image Upside-Down? (Y/N): ")
+		if "Y" in should_flip:
+			print("Flipped!")
+			result_image = result_image.transpose(Image.Transpose.FLIP_TOP_BOTTOM)
+		else:
+			print("Not Flipping? Fine.")
 		filename = input("Save as: ")
 		if filename == "":
 			os.system('cls' if os.name == 'nt' else 'clear')
@@ -234,8 +278,8 @@ def trySaveImage(result_image):
 			mainMenu()
 		else:
 			result_image.save(filename + ".png")
-		shouldRestart = input("Return to main menu? (Y/N): ")
-		if "Y" in shouldRestart:
+		should_restart = input("Return to main menu? (Y/N): ")
+		if "Y" in should_restart:
 			os.system('cls' if os.name == 'nt' else 'clear')
 			mainMenu()
 		else:
@@ -323,6 +367,21 @@ def fontToImage(answer):
 				for char in row:
 					file.write(char)
 '''
+
+def snick(img):	#This is a fix for the no-alpha encoded fontbase24r.rfi file extraction. A proper name is fauxAlphaMaskFix or something.
+	width, height = img.size
+	#Calculate transparency based on the RGB Values. This kills the black background too.
+	for x in range(width):
+		for y in range(height):
+			r, g, b, _ = img.getpixel((x, y))
+			avg = (r + g + b) // 3
+			img.putpixel((x, y), (r, g, b, avg))	#I get the average although r==g==b on the image.
+	#Since they are now properly transparent, set them all to pure white.
+	for y in range(height):
+		for x in range(width):
+			r, g, b, a = img.getpixel((x, y))
+			img.putpixel((x, y), (255, 255, 255, a))
+	return img
 
 if __name__ == "__main__":
 	mainMenu()
