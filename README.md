@@ -37,8 +37,8 @@
 </ul>
 <hr>
 <p align="center">
-Special thanks to <a href="https://www.baremettle.com/">Bare Mettle Entertainment</a> for making <a href="https://store.steampowered.com/app/362490/Exanima/">Exanima</a>,<br>
-to <a href=https://www.ascii-code.com/>ascii-code.com</a> and <a href=https://en.wikipedia.org/wiki/List_of_Unicode_characters>Wikipedia's unicode character list</a>,<br>
+Special thanks to <a href="https://www.baremettle.com/">Bare Mettle Entertainment</a> for making <a href="https://store.steampowered.com/app/362490/Exanima/">Exanima</a> (and Sui Generis),<br>
+to <a href=https://www.fileformat.info/info/unicode/char/search.htm>fileformat.info's unicode search</a> and <a href=https://en.wikipedia.org/wiki/List_of_Unicode_characters>Wikipedia's unicode character list</a>,<br>
 the <a href="https://discord.gg/urAMNZBVMz">Exanima discord</a> and <a href="https://discord.gg/DVwrg2Vpqc">modding discord</a>.<br>
 </p>
 
