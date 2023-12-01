@@ -15,6 +15,7 @@ class textData:		#Stores data about an imageFont.
 		self.force_crop_top		= None
 		self.force_crop_width	= None
 		self.flip_vertical		= None
+		self.center_letters		= None
 
 def mainMenu():
 	global programMode
@@ -87,6 +88,7 @@ def answerReply(answer):
 			atd.force_crop_top = 2						#Same as above, but the top edge of the space. (J in title_font dips into the character below, so this.).
 			atd.flip_vertical = True					#Flips the image vertically before doing anything else. Exanima files are naturally upside down.
 			atd.snick = False							#Because fontbase24r is an encoded rfi, it came out with black background. This fixes it, perfectly. (Basically if you have a grayscale font with a black background, use this.)
+			atd.center_letters = True					#titlefont letters are actually centered in their "cells", so this is a fix for that when using FontToImageFont.
 		case "2":
 			atd.image_path = './fonts/fontbase24r.png'
 			atd.character_layout = [
@@ -114,6 +116,7 @@ def answerReply(answer):
 			atd.force_crop_top = 0
 			atd.flip_vertical = True
 			atd.snick = True
+			atd.center_letters = False
 		case "3":
 			atd.image_path = './fonts/smallfont.png'
 			atd.character_layout = [
@@ -143,6 +146,7 @@ def answerReply(answer):
 			atd.force_crop_top = 0
 			atd.flip_vertical = True
 			atd.snick = False
+			atd.center_letters = False
 		case "4":
 			atd.image_path = './fonts/mediumfont.png'
 			atd.character_layout = [
@@ -171,6 +175,7 @@ def answerReply(answer):
 			atd.force_crop_top = 0
 			atd.flip_vertical = True
 			atd.snick = False
+			atd.center_letters = False
 		case _:
 			print("Error: Invalid Answer! (" + answer + ")")
 			print("Returning to menu...")
@@ -344,7 +349,12 @@ def fontToImage(answer):
 					left, top, right, bottom = font.getbbox(char)
 					char_width = right - left
 					char_height = bottom - top
-					draw.text((x * atd.crop_x, y * atd.crop_y + atd.crop_y - bottom), char, fill="black", font=font)
+					center_x = 0
+					center_y = 0
+					if atd.center_letters:			
+						center_x = (atd.crop_x - char_width) // 2
+						center_y = (atd.crop_y - char_height) // 2
+					draw.text((x * atd.crop_x + center_x, y * atd.crop_y - center_y + atd.crop_y - bottom), char, fill="black", font=font)
 				except UnicodeEncodeError:	#If the character isn't part of the font.
 					failed_char_list.append(char)
 	if failed_char_list != []:
