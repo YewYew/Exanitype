@@ -18,6 +18,7 @@
   <li>Exanima small text font.</li>
   <li>Exanima medium text font.</li>
   <li>(Planned) Exanima large text font.</li>
+  <sub><sup>Note: Small, Medium, (and Large) text font files not at full resolution... yet.</sup></sub>
   <li>(Maybe) Pre-edited logo font.</li>
   <sub><sup>Note: The Exanima logo is Palotino Linotype.</sup></sub>
 </ul>

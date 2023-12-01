@@ -1,4 +1,7 @@
 from PIL import Image, ImageFont, ImageDraw
+import packages.FontSquasher
+import select
+import sys
 import os
 
 os.system('cls' if os.name == 'nt' else 'clear')
@@ -369,7 +372,6 @@ def fontToImage(answer):
 			failed_iterator += 1
 	trySaveImage(img)
 		
-
 #This is for turning a character_layout into a string, for testing.
 '''
 		with open("test_characters.txt", "w", encoding="utf-8") as file:
@@ -379,27 +381,32 @@ def fontToImage(answer):
 '''
 
 def snick(img):	#This is a fix for the no-alpha encoded fontbase24r.rfi file extraction.
-	width, height = img.size
-	#Info for the long-ish load.
-	print("Swift Neutral Image Clarity Korrection | SNICK")
-	print("Size:\t" + str(width) + "x" + str(height))
-	print("Pixels:\t" + str(width*height))
-	#Calculate transparency based on the RGB Values. This kills the black background too.
-	print("Calculating Transparency...")
-	for x in range(width):
-		for y in range(height):
-			r, g, b, _ = img.getpixel((x, y))
-			avg = (r + g + b) // 3
-			img.putpixel((x, y), (r, g, b, avg))	#I get the average although r==g==b on the image.
-	#Since they are now properly transparent, set them all to pure white.
-	print("Fixing Foreground...")
-	for y in range(height):
+	try:
+		width, height = img.size
+		#Info for the long-ish load.
+		print("Swift Neutral Image Clarity Korrection | SNICK")
+		print("Size:\t" + str(width) + "x" + str(height))
+		print("Pixels:\t" + str(width*height))
+		print("Please do not enter anything while snicking is in progress.")
+		#Calculate transparency based on the RGB Values. This kills the black background too.
+		print("Calculating Transparency...")
 		for x in range(width):
-			r, g, b, a = img.getpixel((x, y))
-			img.putpixel((x, y), (255, 255, 255, a))
-	print("SNICKED!")
-	os.system('cls' if os.name == 'nt' else 'clear')
-	return img
+			for y in range(height):
+				r, g, b, _ = img.getpixel((x, y))
+				avg = (r + g + b) // 3
+				img.putpixel((x, y), (r, g, b, avg)) #I get the average although r==g==b on the image.
+		#Since they are now properly transparent, set them all to pure white.
+		print("Fixing Foreground...")
+		for y in range(height):
+			for x in range(width):
+				r, g, b, a = img.getpixel((x, y))
+				img.putpixel((x, y), (255, 255, 255, a))
+		print("SNICKED!")
+		os.system('cls' if os.name == 'nt' else 'clear')
+		return img
+	except KeyboardInterrupt:
+		print("Cancelled snick: Returning to main menu...")
+		mainMenu()
 
 if __name__ == "__main__":
 	mainMenu()
