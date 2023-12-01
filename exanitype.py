@@ -1,5 +1,4 @@
 from PIL import Image, ImageFont, ImageDraw
-import packages.FontSquasher
 import select
 import sys
 import os
